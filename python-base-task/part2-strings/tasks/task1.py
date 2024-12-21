@@ -1,26 +1,27 @@
-def frequency(fn): 
-    f = open(fn, 'r')
+def frequency(file_name: str) -> dict: 
+    f = open(file_name, 'r')
     content = f.read()
     words = content.split()
 
     dict_words = dict()
 
     for i in range(len(words)):
-        word = words[i]
+        old_word = words[i]
 
         clean_word = ""
-        for letter in word:
-            if letter.isalnum():
-                clean_word += letter 
+        for i in range(len(old_word) - 1, -1, -1):
+            if old_word[i].isalnum():
+                clean_word = old_word[:i + 1]
+                break
 
         words[i] = clean_word.lower()
 
-        word = words[i]
+        new_word = words[i]
 
-        if word in dict_words:
-            dict_words[word] += 1
+        if new_word in dict_words:
+            dict_words[new_word] += 1
         else:
-            dict_words[word] = 1
+            dict_words[new_word] = 1
 
     dict_words = dict(sorted(dict_words.items()))
 
