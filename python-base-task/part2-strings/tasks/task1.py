@@ -8,15 +8,18 @@ def frequency(file_name: str) -> dict:
     for i in range(len(words)):
         old_word = words[i]
 
-        clean_word = ""
+        new_word = ""
         for i in range(len(old_word) - 1, -1, -1):
             if old_word[i].isalnum():
-                clean_word = old_word[:i + 1]
+                new_word = old_word[:i + 1]
                 break
 
-        words[i] = clean_word.lower()
+        for i in range(len(new_word)):
+            if new_word[i].isalnum():
+                new_word = new_word[i:]
+                break    
 
-        new_word = words[i]
+        new_word = new_word.lower()
 
         if new_word in dict_words:
             dict_words[new_word] += 1
