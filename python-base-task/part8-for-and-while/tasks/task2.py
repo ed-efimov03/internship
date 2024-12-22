@@ -5,7 +5,7 @@ while command.strip().lower() != "выйти":
     if command.strip().lower() == "пополнить счет":
         money = int(input("Сумма для пополнения: "))
         acocunt += money
-        print(f'Счет пополнен на {money}. Текущий баланс: {acocunt}.')
+        print(f'Счет пополнен на {money}. Текущий баланс: {acocunt}')
 
     elif command.strip().lower() == "снять деньги":
         money = int(input("Сумма для снятия: "))
