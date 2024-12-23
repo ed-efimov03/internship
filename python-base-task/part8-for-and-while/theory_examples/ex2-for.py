@@ -1,8 +1,7 @@
 numbers = map(int, input().split())
 c, pr = 0, 1
-maxi = -2147483647
+maxi = -1000
 mini = 1000
-print(maxi-1)
 for n in numbers:
     if n > 0:
         c += 1
