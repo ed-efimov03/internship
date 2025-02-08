@@ -19,7 +19,7 @@ class CargoAircraft(Aircraft):
 
 class Airport:
     def __init__(self):
-        self.aircrafts_list = [] 
+        self.aircrafts_list = []  
 
 
     def add_aircraft(self, aircraft: Aircraft):
