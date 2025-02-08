@@ -61,10 +61,10 @@ class Reader:
 
 
 
-# Создание библиотеки
+
 library1 = Library()
 
-# Создание и добавление книг
+
 book1 = Book(title="1984", author="George Orwell", year_release=1949)
 book2 = Book(title="To Kill a Mockingbird", author="Harper Lee", year_release=1960)
 book3 = Book(title="The Great Gatsby", author="F. Scott Fitzgerald", year_release=1925)
@@ -77,20 +77,20 @@ library1.add_book(book3)
 library1.add_book(book4)
 library1.add_book(book5)
 
-# Вывод всех книг
+
 library1.show_books()
 
-# Создание читателя
+
 reader1 = Reader("Ed", "Efimov", 21)
 
-# Читатель берет книгу
+
 reader1.take_book(Book(title="To Kill a Mockingbird", author="Harper Lee", year_release=1960), library1)
 
-# Снова смотрим список книг
+
 library1.show_books()
 
-# Читатель возвращает книгу
+
 reader1.return_book(Book(title="To Kill a Mockingbird", author="Harper Lee", year_release=1960), library1)
 
-# Финальный список книг
+
 library1.show_books()

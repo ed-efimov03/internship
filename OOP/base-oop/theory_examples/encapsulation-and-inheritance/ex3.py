@@ -1,35 +1,32 @@
 class Recipe:
-    # Инициализация рецепта с названием блюда и списком ингредиентов
     def __init__(self, dish: str, ingredients: list):
-        self.dish = dish  # Название блюда
-        self.ingredients = ingredients  # Список ингредиентов
+        self.dish = dish  
+        self.ingredients = ingredients 
 
-    # Метод для печати списка ингредиентов
     def print_ingredients(self):
-        print(f"Ингредиенты для {self.dish}:")  # Вывод названия блюда
-        for ing in self.ingredients:  # Проходим по всем ингредиентам
-            print(f"- {ing}")  # Выводим каждый ингредиент
+        print(f"Ингредиенты для {self.dish}:") 
+        for ing in self.ingredients: 
+            print(f"- {ing}") 
 
-    # Метод для "приготовления" блюда
     def cook(self):
-        print(f"Сегодня мы готовим {self.dish}.")  # Выводим название блюда
-        print(f"Выполняем инструкцию по приготовлению блюда {self.dish}...")  # Имитация процесса приготовления
-        print(f"Блюдо {self.dish} готово!")  # Выводим сообщение о завершении приготовления
+        print(f"Сегодня мы готовим {self.dish}.") 
+        print(f"Выполняем инструкцию по приготовлению блюда {self.dish}...")  
+        print(f"Блюдо {self.dish} готово!") 
 
-# создаем рецепт спагетти болоньезе
+
 spaghetti = Recipe("Спагетти болоньезе", ["Спагетти", "Фарш", "Томатный соус", "Лук", "Чеснок", "Соль"])
 
-# печатаем список продуктов для рецепта спагетти
+
 spaghetti.print_ingredients()
 
-# готовим спагетти
+
 spaghetti.cook()  
 
-# создаем рецепт для кекса
+
 cake = Recipe("Кекс", ["Мука", "Яйца", "Молоко", "Сахар", "Сливочное масло", "Соль", "Ванилин"])
 
-# печатаем рецепт кекса
+
 cake.print_ingredients()
 
-# готовим кекс
+
 cake.cook()

@@ -1,78 +1,56 @@
-import math  # Импортируем модуль math для вычислений
+import math
 
-# Класс Shape представляет базовый класс для всех геометрических фигур
 class Shape:
-    # Инициализация геометрической фигуры с цветом
     def __init__(self, color: str):
-        self.color = color  # Цвет фигуры
+        self.color = color
 
-    # Метод для описания геометрической фигуры
     def describe(self):
-        print(f"Это геометрическая фигура, цвет - {self.color}.")  # Выводим описание фигуры с указанием цвета
+        print(f"Это геометрическая фигура, цвет - {self.color}.")
 
-# Класс Circle наследует от Shape и представляет окружность
 class Circle(Shape):
-    # Инициализация окружности с цветом и радиусом
     def __init__(self, color: str, radius: float):
-        super().__init__(color)  # Вызов конструктора родительского класса для установки цвета
-        self.radius = radius  # Радиус окружности
+        super().__init__(color)
+        self.radius = radius
     
-    # Метод для вычисления площади окружности
     def area(self):
-        return round(math.pi * self.radius * self.radius, 2)  # Площадь окружности по формуле: π * r^2
+        return round(math.pi * self.radius * self.radius, 2)
 
-    # Метод для описания окружности
     def describe(self):
-        super().describe()  # Вызов метода описания родительского класса
-        print(f"Это окружность. Радиус - {self.radius} см, цвет - {self.color}.")  # Дополняем описание окружности
+        super().describe()
+        print(f"Это окружность. Радиус - {self.radius} см, цвет - {self.color}.")
 
-# Класс Rectangle наследует от Shape и представляет прямоугольник
 class Rectangle(Shape):
-    # Инициализация прямоугольника с цветом, длиной и шириной
     def __init__(self, color: str, length: float, width: float):
-        super().__init__(color)  # Вызов конструктора родительского класса для установки цвета
-        self.length = length  # Длина прямоугольника
-        self.width = width  # Ширина прямоугольника
+        super().__init__(color)
+        self.length = length
+        self.width = width
     
-    # Метод для вычисления площади прямоугольника
     def area(self):
-        return round(self.length * self.width, 2)  # Площадь прямоугольника: длина * ширина
+        return round(self.length * self.width, 2)
     
-    # Метод для описания прямоугольника
     def describe(self):
-        super().describe()  # Вызов метода описания родительского класса
-        print(f"Это {self.color} прямоугольник. Длина - {self.length} см, ширина - {self.width} см.")  # Дополняем описание прямоугольника
+        super().describe()
+        print(f"Это {self.color} прямоугольник. Длина - {self.length} см, ширина - {self.width} см.")
 
-# Класс Triangle наследует от Shape и представляет треугольник
 class Triangle(Shape):
-    # Инициализация треугольника с цветом, основанием и высотой
     def __init__(self, color: str, base: float, height: float):
-        super().__init__(color)  # Вызов конструктора родительского класса для установки цвета
-        self.base = base  # Основание треугольника
-        self.height = height  # Высота треугольника
+        super().__init__(color)
+        self.base = base
+        self.height = height
     
-    # Метод для вычисления площади треугольника
     def area(self):
-        return round(0.5 * self.base * self.height, 2)  # Площадь треугольника: 0.5 * основание * высота
+        return round(0.5 * self.base * self.height, 2)
     
-    # Метод для описания треугольника
     def describe(self):
-        super().describe()  # Вызов метода описания родительского класса
-        print(f"Это {self.color} треугольник с основанием {self.base} см и высотой {self.height} см.")  # Дополняем описание треугольника
+        super().describe()
+        print(f"Это {self.color} треугольник с основанием {self.base} см и высотой {self.height} см.")
     
-# Создаем объект окружности с цветом и радиусом
 circle = Circle("красный", 5)
-
-# Создаем объект прямоугольника с цветом, длиной и шириной
 rectangle = Rectangle("синий", 3, 4)
-
-# Создаем объект треугольника с цветом, основанием и высотой
 triangle = Triangle("фиолетовый", 6, 8)
 
-# Вызываем метод describe для каждого объекта, чтобы вывести описание
-circle.describe()  # Описание окружности
-rectangle.describe()  # Описание прямоугольника
-triangle.describe()  # Описание треугольника
+circle.describe()
+rectangle.describe()
+triangle.describe()
 
-# Вычисляем и выводим площади каждой фигуры
 print(f"Площадь треугольника {triangle.area()}, окружности {circle.area()}, прямоугольника {rectangle.area()} см.")

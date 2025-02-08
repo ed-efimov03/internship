@@ -1,46 +1,34 @@
-# Класс Employee представляет сотрудника с именем, возрастом, зарплатой и бонусом
 class Employee:
-    # Инициализация сотрудника с именем, возрастом, зарплатой и бонусом
     def __init__(self, name: str, age: int, salary: float):
-        self.__name = name  # Имя сотрудника
-        self.__age = age  # Возраст сотрудника
-        self.__salary = salary  # Зарплата сотрудника
-        self.__bonus = 0  # Начальный бонус равен 0
+        self.__name = name
+        self.__age = age
+        self.__salary = salary
+        self.__bonus = 0
 
-    # Метод для установки бонуса сотруднику
     def set_bonus(self, bonus):
-        self.__bonus = bonus  # Устанавливаем бонус
+        self.__bonus = bonus
 
-    # Метод для получения имени сотрудника
     def get_name(self):
-        return self.__name  # Возвращаем имя сотрудника
+        return self.__name
     
-    # Метод для получения возраста сотрудника
     def get_age(self):
-        return self.__age  # Возвращаем возраст сотрудника
+        return self.__age
     
-    # Метод для получения зарплаты сотрудника
     def get_salary(self):
-        return self.__salary  # Возвращаем зарплату сотрудника
+        return self.__salary
     
-    # Метод для получения бонуса сотрудника
     def get_bonus(self):
-        return self.__bonus  # Возвращаем бонус сотрудника
+        return self.__bonus
     
-    # Метод для получения общей зарплаты (зарплата + бонус)
     def get_total_salary(self):
-        return self.__salary + self.__bonus  # Возвращаем общую зарплату сотрудника
+        return self.__salary + self.__bonus
 
-
-# создаем сотрудника с именем, возрастом и зарплатой
 employee = Employee("Марина Арефьева", 30, 90000)
 
-# устанавливаем бонус для сотрудника
 employee.set_bonus(15000)
 
-# выводим имя, возраст, зарплату, бонус и общую зарплату сотрудника
-print("Имя:", employee.get_name())  # Печатаем имя сотрудника
-print("Возраст:", employee.get_age())  # Печатаем возраст сотрудника
-print("Зарплата:", employee.get_salary())  # Печатаем зарплату сотрудника
-print("Бонус:", employee.get_bonus())  # Печатаем бонус сотрудника
-print("Итого начислено:", employee.get_total_salary())  # Печатаем общую зарплату сотрудника
+print("Имя:", employee.get_name())
+print("Возраст:", employee.get_age())
+print("Зарплата:", employee.get_salary())
+print("Бонус:", employee.get_bonus())
+print("Итого начислено:", employee.get_total_salary())
