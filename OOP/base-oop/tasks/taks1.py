@@ -4,18 +4,15 @@ class Book:
         self.author = ' '.join(word.capitalize() for word in author.split())
         self.year_release = year_release
 
-    """Выводит информацию о книге."""
     def show_info(self):
         print(f"Название: {self.title}")
         print(f"Автор: {self.author}")
         print(f"Год выпуска: {self.year_release}")
 
-    """Сравнивает книги по заголовку, автору и году выпуска."""
     def __eq__(self, other):
         if isinstance(other, Book):
             return (self.title, self.author, self.year_release) == (other.title, other.author, other.year_release)
         
-    """Возвращает уникальный хеш-код для книги."""    
     def __hash__(self):
         return hash((self.title, self.author, self.year_release))
 
@@ -24,11 +21,9 @@ class Library:
         self.books_list = dict()
 
     def add_book(self, new_book: Book):
-        """Добавляет книгу в библиотеку, увеличивая её количество, если такая уже есть."""
         self.books_list[new_book] = self.books_list.get(new_book, 0) + 1 
 
     def show_books(self):
-        """Выводит список книг и их количество."""
         if not self.books_list:
             print("В библиотеке пока нет книг.\n")
             return
@@ -45,7 +40,6 @@ class Reader:
         self.age = age
 
     def take_book(self, book: Book, lib: Library):
-        """Позволяет читателю взять книгу, если она есть в наличии."""
         if lib.books_list.get(book, 0) > 0:  # Проверяем, есть ли книга в библиотеке
             lib.books_list[book] -= 1
             print(f"{self.name} {self.surname} взял книгу '{book.title}' ({book.author}). Приятного чтения!\n")
