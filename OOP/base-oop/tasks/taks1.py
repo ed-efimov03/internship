@@ -4,9 +4,9 @@ class Book:
     Этот класс используется для хранения информации о книге, таких как название, автор и год выпуска.
 
     Атрибуты:
-        title (str): Название книги.
-        author (str): Автор книги.
-        year_release (int): Год выпуска книги.
+        _title (str): Название книги.
+        _author (str): Автор книги.
+        _year_release (int): Год выпуска книги.
 
     Методы:
         show_info: Выводит информацию о книге.
@@ -22,15 +22,32 @@ class Book:
             author (str): Автор книги.
             year_release (int): Год выпуска книги.
         """
-        self.title = ' '.join(word.capitalize() for word in title.split())
-        self.author = ' '.join(word.capitalize() for word in author.split())
-        self.year_release = year_release
+
+        self._title = ' '.join(word.capitalize() for word in title.split())
+        self._author = ' '.join(word.capitalize() for word in author.split())
+        self._year_release = year_release
+
+    def get_title(self):
+        """Геттер для названия книги."""
+
+        return self._title
+    
+    def get_author(self):
+        """Геттер для автора книги."""
+
+        return self._author
+    
+    def get_year_release(self):
+        """Геттер для года выхода книги."""
+
+        return self._year_release
 
     def show_info(self):
         """Выводит информацию о книге."""
-        print(f"Название: {self.title}")
-        print(f"Автор: {self.author}")
-        print(f"Год выпуска: {self.year_release}")
+
+        print(f"Название: {self.get_title()}")
+        print(f"Автор: {self.get_author()}")
+        print(f"Год выпуска: {self.get_year_release()}")
 
     def __eq__(self, other):
         """Сравнивает текущую книгу с другой книгой по атрибутам.
@@ -41,8 +58,9 @@ class Book:
         Returns:
             bool: True, если книги одинаковые, иначе False.
         """
+        
         if isinstance(other, Book):
-            return (self.title, self.author, self.year_release) == (other.title, other.author, other.year_release)
+            return (self.get_title(), self.get_author(), self.get_year_release()) == (other.get_title(), other.get_author(), other.get_year_release())
         
     def __hash__(self):
         """Возвращает хеш-значение для книги.
@@ -50,7 +68,8 @@ class Book:
         Returns:
             int: Хеш-значение книги.
         """
-        return hash((self.title, self.author, self.year_release))
+
+        return hash((self.get_title(), self.get_author(), self.get_year_release()))
 
 
 class Library:
@@ -64,11 +83,19 @@ class Library:
     Методы:
         add_book: Добавляет книгу в библиотеку.
         show_books: Показывает все книги, доступные в библиотеке.
+        get_book_count: Возвращает количество доступных экземпляров книги.
+        set_book_count: Устанавливает количество экземпляров книги.
     """
 
     def __init__(self):
         """Инициализирует объект библиотеки с пустым списком книг."""
-        self.books_list = dict()
+
+        self._books_list = dict()
+
+    def get_books_list(self):
+        """Возвращает содержимое библиотеки."""
+
+        return self._books_list
 
     def add_book(self, new_book: Book):
         """Добавляет новую книгу в библиотеку или увеличивает количество уже имеющейся.
@@ -76,15 +103,41 @@ class Library:
         Args:
             new_book (Book): Книга, которую нужно добавить в библиотеку.
         """
-        self.books_list[new_book] = self.books_list.get(new_book, 0) + 1 
+
+        self._books_list[new_book] = self.get_books_list().get(new_book, 0) + 1 
+
+    def get_book_count(self, book: Book):
+        """Возвращает количество доступных экземпляров книги.
+
+        Args:
+            book (Book): Книга, количество которой нужно получить.
+
+        Returns:
+            int: Количество экземпляров книги в библиотеке.
+        """
+
+        return self._books_list.get(book, 0)
+
+    def set_book_count(self, book: Book, count: int):
+        """Устанавливает количество экземпляров книги в библиотеке.
+
+        Args:
+            book (Book): Книга, количество которой нужно установить.
+            count (int): Новое количество экземпляров книги.
+        """
+
+        if count < 0:
+            raise ValueError("Количество книг не может быть отрицательным.")
+        self._books_list[book] = count
 
     def show_books(self):
         """Выводит список всех книг в библиотеке с количеством каждой книги."""
-        if not self.books_list:
+
+        if not self.get_books_list():
             print("В библиотеке пока нет книг.\n")
             return
         print("Список имеющихся книг:")
-        for book, count in self.books_list.items():
+        for book, count in self.get_books_list().items():
             book.show_info()
             print(f"Кол-во книг в наличии: {count}")
             print()
@@ -96,11 +149,14 @@ class Reader:
     Этот класс используется для управления действиями читателя в библиотеке, такими как взятие книги и ее возврат.
 
     Атрибуты:
-        name (str): Имя читателя.
-        surname (str): Фамилия читателя.
-        age (int): Возраст читателя.
+        _name (str): Имя читателя.
+        _surname (str): Фамилия читателя.
+        _age (int): Возраст читателя.
 
     Методы:
+        get_name: Геттер для имени читателя.
+        get_surname: Геттер для фамилии читателя.
+        get_age: Геттер для возраста читателя.
         take_book: Читатель берет книгу из библиотеки.
         return_book: Читатель возвращает книгу в библиотеку.
     """
@@ -113,9 +169,25 @@ class Reader:
             surname (str): Фамилия читателя.
             age (int): Возраст читателя.
         """
-        self.name = name
-        self.surname = surname
-        self.age = age
+
+        self._name = name
+        self._surname = surname
+        self._age = age
+
+    def get_name(self):
+        """Геттер для имени читателя."""
+
+        return self._name
+    
+    def get_surname(self):
+        """Геттер для фамилии читателя."""
+
+        return self._surname
+    
+    def get_age(self):
+        """Геттер для возраста читателя."""
+
+        return self._name
 
     def take_book(self, book: Book, lib: Library):
         """Читатель берет книгу из библиотеки, если она доступна.
@@ -124,9 +196,11 @@ class Reader:
             book (Book): Книга, которую читатель хочет взять.
             lib (Library): Библиотека, из которой берется книга.
         """
-        if lib.books_list.get(book, 0) > 0:  
-            lib.books_list[book] -= 1
-            print(f"{self.name} {self.surname} взял книгу '{book.title}' ({book.author}). Приятного чтения!\n")
+
+        current_count = lib.get_book_count(book)
+        if current_count > 0:  
+            lib.set_book_count(book, current_count - 1)
+            print(f"{self.get_name()} {self.get_surname()} взял книгу '{book.get_title()}' ({book.get_author()}). Приятного чтения!\n")
         else:
             print(f"Книга '{book.title}' сейчас отсутствует в библиотеке.\n")
 
@@ -137,8 +211,10 @@ class Reader:
             book (Book): Книга, которую читатель возвращает.
             lib (Library): Библиотека, куда возвращается книга.
         """
-        if book in lib.books_list:
-            lib.books_list[book] += 1
+
+        if book in lib.get_books_list():
+            current_count = lib.get_book_count(book)
+            lib.set_book_count(book, current_count + 1)
             print("Спасибо за возврат книги\n")
         else:
             print("Данной книги нет в реестре\n")
